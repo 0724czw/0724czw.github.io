@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>life on Zhiwei Blog</title>
+    <link>https://0724czw.github.io/categories/life/</link>
+    <description>Recent content in life on Zhiwei Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 29 May 2023 18:36:41 +0800</lastBuildDate><atom:link href="https://0724czw.github.io/categories/life/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My first Hugo Blog</title>
+      <link>https://0724czw.github.io/note/2023/05/29/my-first-hugo-blog/</link>
+      <pubDate>Mon, 29 May 2023 18:36:41 +0800</pubDate>
+      
+      <guid>https://0724czw.github.io/note/2023/05/29/my-first-hugo-blog/</guid>
+      <description>My First Blog Hello,大家好，这是我的第一篇用hugo做的博客，这是一个新的挑战，接下来我将会在这个博客上分享我的学习历程，目前我正在处于研一阶段，正在找我人生中的第一份实习，我希望能够进入到和新能源汽车相关的行业，我也会在这里分享我的求职历程。</description>
+    </item>
+    
+  </channel>
+</rss>

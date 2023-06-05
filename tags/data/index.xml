@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Data on Zhiwei Blog</title>
+    <link>https://0724czw.github.io/tags/data/</link>
+    <description>Recent content in Data on Zhiwei Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 04 Jun 2023 18:36:41 +0800</lastBuildDate><atom:link href="https://0724czw.github.io/tags/data/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>GraduationDesign</title>
+      <link>https://0724czw.github.io/post/2023/06/04/graduationdesign/</link>
+      <pubDate>Sun, 04 Jun 2023 18:36:41 +0800</pubDate>
+      
+      <guid>https://0724czw.github.io/post/2023/06/04/graduationdesign/</guid>
+      <description>毕业设计总结 这篇博客我会持续的更新，内容是关于我在完成我的毕业设计的时候出现的一些问题，我会把记录下来并给出解决方案。
+最开始的时候，我只是单纯的想做后端的一些功能，没有考虑到后期加入前端展示的功能，所以在有一些地方走了弯路，目前也只是一些基础的前段页面功能，这是我第一次使用python的前端框架Flask。整体感觉就是非常的轻量级非常的好用，下面我将分为前端部分和后端部分两个维度分析。
+前端 页面显示问题 最开始的时候，当我引入Flask包之后，搭建好基础环境之后，我基础的home.html页面和result.html页面都是存在的，但是我启动项目之后依旧显示不出来，一直都是404页面。
+@app.route(&#39;/&#39;, methods=[&#39;GET&#39;, &#39;POST&#39;]) def home(): return render_template(&#39;home.html&#39;) 后来发现我们的页面不能创建在根目录的下面，要在根目录下创建一个templates包，然后再把home页面放在templates下面，这样我们的项目就可以成功启动啦。目录结构如下所示（Project就是你对应项目的名称）。
+Porject -static -templates home.html result.html -app.py -main.py 后端 我按砸后目前的代码结构从上到下来分析问题吧，就不按照写代码的顺序往下推进了。
+缓存问题 我们都知道浏览器存在缓存的问题，我们的项目是分析文件然后给出结果，我们的结果是一个excel文件和一些图片，这个时候就存在浏览器缓存的问题，最开始的时候，在我们分析完第一个文件已经得到我们想要的结果之后，我们就打算去分析第二个文件，但我发现这个时候得到的图片和excel文件还是刚才那个文件的结果。这个时候我大概率猜到了是浏览器缓存的问题。这个时候我想到两种解决方案（1.给文件增加时间戳使文件名具有唯一性 2.清除浏览器缓存）。这个时候我一直在尝试时间戳的方式，因为我以为是文件名重复导致浏览器会直接去找之前的缓存所以导致图片不能更新。但在我做了很多尝试之后发现，还是无济于事。
+下面的这段代码就是返回图片到浏览器的那一段代码，即使我增加了时间戳使图片的名称唯一还是不行。
+@app.route(&#39;/plot/group&#39;) def plot_group(): return send_file(&amp;quot;Completion Rate of Group.png&amp;quot;, mimetype=&#39;image/png&#39;) @app.route(&#39;/plot/student&#39;) def plot_student(): return send_file(&amp;quot;Completion Rate of Student.png&amp;quot;, mimetype=&#39;image/png&#39;) 所以我采用第二种方案直接在代码层面不让浏览器缓存。解决方案如下
+@app.after_request def add_cache_control(response): response.headers[&#39;Cache-Control&#39;] = &#39;no-cache, no-store, must-revalidate&#39; response.headers[&#39;Pragma&#39;] = &#39;no-cache&#39; response.headers[&#39;Expires&#39;] = &#39;0&#39; return response 这样就轻松解决了困扰我一晚上的地方。因为之前一直在尝试让图片的名称唯一这样就可以通过名称直接定位到相应图片，但无论如何都成功不了。当时在测试的时候打断点发现，当我浏览器存在缓存的时候 return send_file(&amp;ldquo;Completion Rate of Group.png&amp;rdquo;, mimetype=&amp;lsquo;image/png&amp;rsquo;)这一段代码根本就没有被执行，直接跳过了。我return任何东西返回给我的都是之前存在的图片。好在最终是解决了这个问题还是非常开心的。</description>
+    </item>
+    
+    <item>
+      <title>The-art-of-data-science_1</title>
+      <link>https://0724czw.github.io/post/2023/06/03/the-art-of-data-science_1/</link>
+      <pubDate>Sat, 03 Jun 2023 18:36:41 +0800</pubDate>
+      
+      <guid>https://0724czw.github.io/post/2023/06/03/the-art-of-data-science_1/</guid>
+      <description>The Art of Data Science 最近在读这本书，正好想着写一些观后感给大家。目前还没读完，就自己的理解对于这本书进行一下分析🧐。并且整理一下自己的思路。
+Chapter 1 : Introduction 作者Roger D. Peng和Elizabeth Matsui将数据科学作为一种艺术形式来介绍。他们强调，数据科学超越了单纯的技术技能，需要创造力和直觉来从数据中发掘出有意义的见解。作者强调了数据分析的迭代性，其中探索、实验和持续学习是关键组成部分。他们鼓励读者以好奇心和适应性的心态对待数据科学。
+拟定有意义的问题是本章讨论的数据科学的一个基本方面。作者强调了深思熟虑的提问对于指导数据分析过程的重要性。通过制定相关的和有目的的问题，数据科学家可以提取可操作的见解并有效地解决现实世界的问题。
+本章还讨论了数据科学中的伦理考虑。讨论了隐私问题、偏见以及对透明度和问责制的需求。作者敦促读者注意其工作的社会和道德影响，强调了与数据打交道的责任。
+就本书的结构而言，第1章提供了后续章节的概述。读者可以期待深入了解探索性数据分析、统计建模、机器学习、数据可视化等主题。每一章都旨在让读者掌握实用的技能和见解，以便有效地驾驭数据科学的世界。
+总之，第1章为探索数据科学作为一种艺术形式奠定了基础。它强调了创造力、直觉和迭代在数据分析过程中的重要性。本章还强调了数据科学中的伦理考虑，并强调了数据科学家有责任以透明和公平的方式对待他们的工作。有了这个介绍，读者就可以通过本书的其他部分开始探索之旅了。</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Readings on Zhiwei Blog</title>
+    <link>https://0724czw.github.io/categories/readings/</link>
+    <description>Recent content in Readings on Zhiwei Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 03 Jun 2023 18:36:41 +0800</lastBuildDate><atom:link href="https://0724czw.github.io/categories/readings/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The-art-of-data-science_1</title>
+      <link>https://0724czw.github.io/post/2023/06/03/the-art-of-data-science_1/</link>
+      <pubDate>Sat, 03 Jun 2023 18:36:41 +0800</pubDate>
+      
+      <guid>https://0724czw.github.io/post/2023/06/03/the-art-of-data-science_1/</guid>
+      <description>The Art of Data Science 最近在读这本书，正好想着写一些观后感给大家。目前还没读完，就自己的理解对于这本书进行一下分析🧐。并且整理一下自己的思路。
+Chapter 1 : Introduction 作者Roger D. Peng和Elizabeth Matsui将数据科学作为一种艺术形式来介绍。他们强调，数据科学超越了单纯的技术技能，需要创造力和直觉来从数据中发掘出有意义的见解。作者强调了数据分析的迭代性，其中探索、实验和持续学习是关键组成部分。他们鼓励读者以好奇心和适应性的心态对待数据科学。
+拟定有意义的问题是本章讨论的数据科学的一个基本方面。作者强调了深思熟虑的提问对于指导数据分析过程的重要性。通过制定相关的和有目的的问题，数据科学家可以提取可操作的见解并有效地解决现实世界的问题。
+本章还讨论了数据科学中的伦理考虑。讨论了隐私问题、偏见以及对透明度和问责制的需求。作者敦促读者注意其工作的社会和道德影响，强调了与数据打交道的责任。
+就本书的结构而言，第1章提供了后续章节的概述。读者可以期待深入了解探索性数据分析、统计建模、机器学习、数据可视化等主题。每一章都旨在让读者掌握实用的技能和见解，以便有效地驾驭数据科学的世界。
+总之，第1章为探索数据科学作为一种艺术形式奠定了基础。它强调了创造力、直觉和迭代在数据分析过程中的重要性。本章还强调了数据科学中的伦理考虑，并强调了数据科学家有责任以透明和公平的方式对待他们的工作。有了这个介绍，读者就可以通过本书的其他部分开始探索之旅了。</description>
+    </item>
+    
+  </channel>
+</rss>

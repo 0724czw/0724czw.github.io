@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>GraduationDesign - Zhiwei Blog</title>
+    <meta property="og:title" content="GraduationDesign - Zhiwei Blog">
+    
+    <meta name="twitter:card" content="summary">
+
+    
+    
+      
+    
+
+    
+      
+      <meta property="description" content="这篇博客我会持续的更新，内容是关于我在完成我的毕业设计的时候出现的一些问题，我会把记录下来并给出解决方案。
+最开始的时候，我只是单纯的想做后端的一些功能，没有考虑到后期加入前端展示的功能，所以在有一些地方走了弯路，目前也只是一些基础的前段页面功能，这是我第一次使用python的前端框架Flask。整体感觉就是非常的轻量级非常的好用，下面我将分为前端部分和后端部分两个维度分析。
+[&amp;hellip;] &amp;hellip;">
+      <meta property="og:description" content="这篇博客我会持续的更新，内容是关于我在完成我的毕业设计的时候出现的一些问题，我会把记录下来并给出解决方案。
+最开始的时候，我只是单纯的想做后端的一些功能，没有考虑到后期加入前端展示的功能，所以在有一些地方走了弯路，目前也只是一些基础的前段页面功能，这是我第一次使用python的前端框架Flask。整体感觉就是非常的轻量级非常的好用，下面我将分为前端部分和后端部分两个维度分析。
+[&amp;hellip;] &amp;hellip;">
+      
+    
+
+    
+    
+    
+
+    
+
+    
+    
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.7.0/build/styles/github.min.css">
+
+
+
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/custom.css" />
+
+  </head>
+  <body class="post">
+    <header class="masthead">
+      <h1><a href="/">Zhiwei Blog</a></h1>
+
+<p class="tagline">Happiness is reality minus expectations.</p>
+
+      <nav class="menu">
+  <input id="menu-check" type="checkbox" hidden/>
+  <label id="menu-label" for="menu-check" class="unselectable" hidden>
+    <span class="icon close-icon">✕</span>
+    <span class="icon open-icon">☰</span>
+    <span class="text">Menu</span>
+  </label>
+  <ul>
+  
+  
+  <li><a href="/">Home</a></li>
+  
+  <li><a href="/about/">About</a></li>
+  
+  <li><a href="/categories/">Categories</a></li>
+  
+  <li><a href="/tags/">Tags</a></li>
+  
+  <li><a href="/index.xml">Subscribe</a></li>
+  
+  
+  </ul>
+</nav>
+
+    </header>
+
+    <article class="main">
+      <header class="title">
+      
+<h1>GraduationDesign</h1>
+
+
+
+<h3>
+
+Zhiwei Chen
+
+
+
+
+
+
+ / 
+2023-06-04
+</h3>
+
+<hr>
+
+
+      </header>
+
+
+
+
+
+<h1 id="毕业设计总结">毕业设计总结</h1>
+<p>这篇博客我会持续的更新，内容是关于我在完成我的毕业设计的时候出现的一些问题，我会把记录下来并给出解决方案。</p>
+<p>最开始的时候，我只是单纯的想做后端的一些功能，没有考虑到后期加入前端展示的功能，所以在有一些地方走了弯路，目前也只是一些基础的前段页面功能，这是我第一次使用python的前端框架Flask。整体感觉就是非常的轻量级非常的好用，下面我将分为前端部分和后端部分两个维度分析。</p>
+<h2 id="前端">前端</h2>
+<ol>
+<li>
+<h3 id="页面显示问题">页面显示问题</h3>
+<p>最开始的时候，当我引入Flask包之后，搭建好基础环境之后，我基础的home.html页面和result.html页面都是存在的，但是我启动项目之后依旧显示不出来，一直都是404页面。</p>
+<pre><code class="language-python">@app.route('/', methods=['GET', 'POST'])
+def home():
+    return render_template('home.html')
+</code></pre>
+<p>后来发现我们的页面不能创建在根目录的下面，要在根目录下创建一个templates包，然后再把home页面放在templates下面，这样我们的项目就可以成功启动啦。目录结构如下所示（Project就是你对应项目的名称）。</p>
+<pre><code class="language-python">Porject
+ -static
+ -templates
+ 	 home.html
+ 	 result.html
+ -app.py
+ -main.py
+</code></pre>
+</li>
+</ol>
+<h2 id="后端">后端</h2>
+<p>我按砸后目前的代码结构从上到下来分析问题吧，就不按照写代码的顺序往下推进了。</p>
+<ol>
+<li>
+<h3 id="缓存问题">缓存问题</h3>
+<p>我们都知道浏览器存在缓存的问题，我们的项目是分析文件然后给出结果，我们的结果是一个excel文件和一些图片，这个时候就存在浏览器缓存的问题，最开始的时候，在我们分析完第一个文件已经得到我们想要的结果之后，我们就打算去分析第二个文件，但我发现这个时候得到的图片和excel文件还是刚才那个文件的结果。这个时候我大概率猜到了是浏览器缓存的问题。这个时候我想到两种解决方案（1.给文件增加时间戳使文件名具有唯一性   2.清除浏览器缓存）。这个时候我一直在尝试时间戳的方式，因为我以为是文件名重复导致浏览器会直接去找之前的缓存所以导致图片不能更新。但在我做了很多尝试之后发现，还是无济于事。</p>
+<p>下面的这段代码就是返回图片到浏览器的那一段代码，即使我增加了时间戳使图片的名称唯一还是不行。</p>
+<pre><code class="language-python">@app.route('/plot/group')
+def plot_group():
+    return send_file(&quot;Completion Rate of Group.png&quot;, mimetype='image/png')
+
+@app.route('/plot/student')
+def plot_student():
+    return send_file(&quot;Completion Rate of Student.png&quot;, mimetype='image/png')  
+</code></pre>
+<p>所以我采用第二种方案直接在代码层面不让浏览器缓存。解决方案如下</p>
+<pre><code class="language-python">@app.after_request
+def add_cache_control(response):
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
+    return response
+</code></pre>
+<p>这样就轻松解决了困扰我一晚上的地方。因为之前一直在尝试让图片的名称唯一这样就可以通过名称直接定位到相应图片，但无论如何都成功不了。当时在测试的时候打断点发现，当我浏览器存在缓存的时候 return send_file(&ldquo;Completion Rate of Group.png&rdquo;, mimetype=&lsquo;image/png&rsquo;)这一段代码根本就没有被执行，直接跳过了。我return任何东西返回给我的都是之前存在的图片。好在最终是解决了这个问题还是非常开心的。</p>
+</li>
+</ol>
+
+
+
+  <footer>
+  
+<nav class="post-nav">
+  <span class="nav-prev">&larr; <a href="/post/2023/06/03/the-art-of-data-science_1/">The-art-of-data-science_1</a></span>
+  <span class="nav-next"></span>
+</nav>
+
+
+
+
+
+<script src="//cdn.jsdelivr.net/npm/@xiee/utils/js/math-code.js" defer></script>
+<script src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+
+<script src="//cdn.jsdelivr.net/npm/@xiee/utils/js/center-img.js" defer></script>
+
+  
+
+
+
+
+
+
+
+<script src="//cdn.jsdelivr.net/combine/gh/highlightjs/cdn-release@11.7.0/build/highlight.min.js,npm/@xiee/utils/js/load-highlight.js" defer></script>
+
+
+
+  
+  <hr>
+  <div class="copyright">© <a href="https://0724czw.github.io/">Zhiwei Chen</a> 2022-2023 | <a href="https://github.com/0724czw">Github</a></div>
+  
+  </footer>
+  </article>
+  
+  </body>
+</html>
+
